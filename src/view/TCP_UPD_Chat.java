@@ -1,13 +1,13 @@
 package view;
 
 public class TCP_UPD_Chat extends javax.swing.JFrame {
-String name, ip;
-int source, dest;
+
+    private String nickName, host;
+    int source, dest;
 
     public TCP_UPD_Chat() {
         initComponents();
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -33,7 +33,7 @@ int source, dest;
         jScrollPane2 = new javax.swing.JScrollPane();
         taChatroom = new javax.swing.JTextArea();
         tfMessage = new javax.swing.JTextField();
-        btsend = new javax.swing.JButton();
+        btSend = new javax.swing.JButton();
 
         setTitle("Chat with TCP or UPD");
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
@@ -66,12 +66,6 @@ int source, dest;
         tfIP.setText("188.173.255");
         jPanel4.add(tfIP);
         jPanel4.add(tfSourcePort);
-
-        tfDestinationPort.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfDestinationPortActionPerformed(evt);
-            }
-        });
         jPanel4.add(tfDestinationPort);
         jPanel4.add(tfNickname);
 
@@ -88,7 +82,7 @@ int source, dest;
 
         jPanel6.add(cbWhichProtocol);
 
-        btConect.setText("Conect");
+        btConect.setText("Connect");
         btConect.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 onConect(evt);
@@ -133,8 +127,8 @@ int source, dest;
         gridBagConstraints.weighty = 1.0;
         jPanel2.add(tfMessage, gridBagConstraints);
 
-        btsend.setText("Send");
-        btsend.addActionListener(new java.awt.event.ActionListener() {
+        btSend.setText("Send");
+        btSend.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 onSend(evt);
             }
@@ -145,30 +139,25 @@ int source, dest;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel2.add(btsend, gridBagConstraints);
+        jPanel2.add(btSend, gridBagConstraints);
 
         getContentPane().add(jPanel2);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tfDestinationPortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfDestinationPortActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfDestinationPortActionPerformed
-
     private void onSend(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onSend
-        name = tfNickname.getText();
-        ip = tfIP.getText();
+        nickName = tfNickname.getText();
+        host = tfIP.getText();
         source = Integer.parseInt(tfSourcePort.getText());
         dest = Integer.parseInt(tfDestinationPort.getText());
-        
+
         //dann Senden Klasse öffnen
     }//GEN-LAST:event_onSend
 
     private void onConect(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onConect
-        
-    }//GEN-LAST:event_onConect
 
+    }//GEN-LAST:event_onConect
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -204,7 +193,7 @@ int source, dest;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btConect;
-    private javax.swing.JButton btsend;
+    private javax.swing.JButton btSend;
     private javax.swing.JComboBox cbWhichProtocol;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

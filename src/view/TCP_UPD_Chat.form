@@ -91,9 +91,6 @@
             <Component class="javax.swing.JTextField" name="tfSourcePort">
             </Component>
             <Component class="javax.swing.JTextField" name="tfDestinationPort">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfDestinationPortActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="tfNickname">
             </Component>
@@ -125,7 +122,7 @@
             </Component>
             <Component class="javax.swing.JButton" name="btConect">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Conect"/>
+                <Property name="text" type="java.lang.String" value="Connect"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="onConect"/>
@@ -179,7 +176,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JButton" name="btsend">
+        <Component class="javax.swing.JButton" name="btSend">
           <Properties>
             <Property name="text" type="java.lang.String" value="Send"/>
           </Properties>
