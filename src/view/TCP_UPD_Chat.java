@@ -63,7 +63,7 @@ int source, dest;
 
         jPanel4.setLayout(new java.awt.GridLayout(4, 0));
 
-        tfIP.setText("f.E. 188.173.255");
+        tfIP.setText("188.173.255");
         jPanel4.add(tfIP);
         jPanel4.add(tfSourcePort);
 
