@@ -20,7 +20,7 @@ public class TCP_UDP_Chat extends javax.swing.JFrame {
     {
         DefaultComboBoxModel cbModel = new DefaultComboBoxModel();
         cbModel.addElement("TCP");
-        cbModel.addElement("UDP");
+        cbModel.addElement("ÜDP");
         cbWhichProtocol.setModel(cbModel);
     }
     
@@ -163,7 +163,7 @@ public class TCP_UDP_Chat extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void onSend(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onSend
-        nickName = tfNickname.getText();
+        nickName = tfNickname.getText().concat(" Penis");
         host = tfIP.getText();
         source = Integer.parseInt(tfSourcePort.getText());
         dest = Integer.parseInt(tfDestinationPort.getText());
@@ -172,7 +172,7 @@ public class TCP_UDP_Chat extends javax.swing.JFrame {
     }//GEN-LAST:event_onSend
 
     private void onConnect(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onConnect
-
+        
     }//GEN-LAST:event_onConnect
 
     public static void main(String args[]) {
