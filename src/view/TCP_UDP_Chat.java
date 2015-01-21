@@ -1,29 +1,52 @@
 package view;
 
 import control.TCPMessageListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 public class TCP_UDP_Chat extends javax.swing.JFrame {
 
     private String nickName, host;
     private int source, dest;
     private TCPMessageListener tcpListener;
-    
+    private Thread tcpThread, udpThread;
+
     private final String[] protocols = {"TCP", "UDP"};
-    
+
     public TCP_UDP_Chat() {
         initComponents();
         initCombobox();
     }
-    
-    private void initCombobox()
-    {
+
+    private void loadInformation() throws Exception {
+        nickName = tfNickname.getText();
+        host = tfIP.getText();
+        source = Integer.parseInt(tfSourcePort.getText());
+        dest = Integer.parseInt(tfDestinationPort.getText());
+
+        if (nickName == null || nickName.isEmpty()) {
+            throw new Exception("You have to input a nickname");
+        }
+
+        if (host == null || host.isEmpty()) {
+            throw new Exception("You have to input a host");
+        }
+
+        if (source <= 0 || dest <= 0) {
+            throw new Exception("The port must be bigger than 0");
+        }
+
+    }
+
+    private void initCombobox() {
         DefaultComboBoxModel cbModel = new DefaultComboBoxModel();
         cbModel.addElement("TCP");
-        cbModel.addElement("ÜDP");
+        cbModel.addElement("UDP");
         cbWhichProtocol.setModel(cbModel);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -43,13 +66,14 @@ public class TCP_UDP_Chat extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         cbWhichProtocol = new javax.swing.JComboBox();
-        btConect = new javax.swing.JButton();
+        btConnect = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         taChatroom = new javax.swing.JTextArea();
         tfMessage = new javax.swing.JTextField();
         btSend = new javax.swing.JButton();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Chat with TCP or UPD");
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
@@ -98,13 +122,13 @@ public class TCP_UDP_Chat extends javax.swing.JFrame {
         cbWhichProtocol.setToolTipText("");
         jPanel6.add(cbWhichProtocol);
 
-        btConect.setText("Connect");
-        btConect.addActionListener(new java.awt.event.ActionListener() {
+        btConnect.setText("Connect");
+        btConnect.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 onConnect(evt);
             }
         });
-        jPanel6.add(btConect);
+        jPanel6.add(btConnect);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -163,16 +187,26 @@ public class TCP_UDP_Chat extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void onSend(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onSend
-        nickName = tfNickname.getText().concat(" Penis");
-        host = tfIP.getText();
-        source = Integer.parseInt(tfSourcePort.getText());
-        dest = Integer.parseInt(tfDestinationPort.getText());
-
         //dann Senden Klasse öffnen
     }//GEN-LAST:event_onSend
 
     private void onConnect(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onConnect
-        
+        try {
+            loadInformation();
+
+            if (cbWhichProtocol.getSelectedItem().toString().equals("TCP")) {
+                System.out.println("Combobox equals TCP");
+                tcpListener = new TCPMessageListener(host, source, dest);
+                tcpListener.connect();
+                tcpThread = new Thread(tcpThread);
+                tcpThread.start();
+            }
+
+            btConnect.setEnabled(false);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "SCHEISS EXCEPTION AUFGETRETEN");
+            System.out.println("LOL");
+        }
     }//GEN-LAST:event_onConnect
 
     public static void main(String args[]) {
@@ -209,7 +243,7 @@ public class TCP_UDP_Chat extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btConect;
+    private javax.swing.JButton btConnect;
     private javax.swing.JButton btSend;
     private javax.swing.JComboBox cbWhichProtocol;
     private javax.swing.JLabel jLabel1;

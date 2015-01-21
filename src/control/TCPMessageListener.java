@@ -4,7 +4,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.InetAddress;
+import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.net.SocketAddress;
 import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,25 +16,38 @@ import view.TCP_UDP_Chat;
 public class TCPMessageListener implements Runnable {
 
     private int sourcePort;
+    private int destinationPort;
     private InetAddress ip;
-    private String ipStr;
+    private String host;
     private Socket socket;
+    private BufferedReader br;
 
-    public TCPMessageListener(String ipStr, int sourcePort) {
+    public TCPMessageListener(String ipStr, int sourcePort, int destinationPort) throws Exception {
+        if (ipStr == null || ipStr.equals("") || sourcePort < 0 || destinationPort < 0) {
+            throw new Exception("You have to input a correct host");
+        }
+
         this.sourcePort = sourcePort;
-        this.ipStr = ipStr;
+        this.host = ipStr;
+        this.destinationPort = destinationPort;
+    }
+
+    public void connect() throws Exception {
+        ip = InetAddress.getByName(host);
+        System.out.println(ip.getHostAddress());
+        socket = new Socket(ip, destinationPort);
+        br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        System.out.println("Connected");
     }
 
     @Override
     public void run() {
+        JOptionPane.showMessageDialog(null, "TROLOLOLOLOLOLLOoo");
         String message;
-        BufferedReader br = null;
         try {
-            ip = InetAddress.getByName(ipStr);
-            socket = new Socket(ip, sourcePort);
-            br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
             while ((message = br.readLine()) != null) {
+                System.out.println(message);
                 TCP_UDP_Chat.taChatroom.append(message + "\n");
             }
         } catch (UnknownHostException ex) {
