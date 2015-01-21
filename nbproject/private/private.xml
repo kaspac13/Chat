@@ -3,9 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/F:/2CHIF/POS/Java/Chat/src/view/Contacts.java</file>
-            <file>file:/F:/2CHIF/POS/Java/Chat/src/data/Contact.java</file>
-            <file>file:/F:/2CHIF/POS/Java/Chat/src/model/ContactManagement.java</file>
+            <file>file:/C:/Users/Julian/Documents/GitHub/Chat/src/control/TCPMessageListener.java</file>
+            <file>file:/C:/Users/Julian/Documents/GitHub/Chat/src/view/TCP_UPD_Chat.java</file>
         </group>
     </open-files>
 </project-private>

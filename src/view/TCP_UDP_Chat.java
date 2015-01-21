@@ -1,14 +1,29 @@
 package view;
 
-public class TCP_UPD_Chat extends javax.swing.JFrame {
+import control.TCPMessageListener;
+import javax.swing.DefaultComboBoxModel;
+
+public class TCP_UDP_Chat extends javax.swing.JFrame {
 
     private String nickName, host;
-    int source, dest;
-
-    public TCP_UPD_Chat() {
+    private int source, dest;
+    private TCPMessageListener tcpListener;
+    
+    private final String[] protocols = {"TCP", "UDP"};
+    
+    public TCP_UDP_Chat() {
         initComponents();
+        initCombobox();
     }
-
+    
+    private void initCombobox()
+    {
+        DefaultComboBoxModel cbModel = new DefaultComboBoxModel();
+        cbModel.addElement("TCP");
+        cbModel.addElement("UDP");
+        cbWhichProtocol.setModel(cbModel);
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -80,12 +95,13 @@ public class TCP_UPD_Chat extends javax.swing.JFrame {
         jLabel5.setText("TCP or UPD");
         jPanel6.add(jLabel5);
 
+        cbWhichProtocol.setToolTipText("");
         jPanel6.add(cbWhichProtocol);
 
         btConect.setText("Connect");
         btConect.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                onConect(evt);
+                onConnect(evt);
             }
         });
         jPanel6.add(btConect);
@@ -155,9 +171,9 @@ public class TCP_UPD_Chat extends javax.swing.JFrame {
         //dann Senden Klasse öffnen
     }//GEN-LAST:event_onSend
 
-    private void onConect(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onConect
+    private void onConnect(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onConnect
 
-    }//GEN-LAST:event_onConect
+    }//GEN-LAST:event_onConnect
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -173,20 +189,21 @@ public class TCP_UPD_Chat extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TCP_UPD_Chat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TCP_UDP_Chat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TCP_UPD_Chat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TCP_UDP_Chat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TCP_UPD_Chat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TCP_UDP_Chat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TCP_UPD_Chat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TCP_UDP_Chat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TCP_UPD_Chat().setVisible(true);
+                new TCP_UDP_Chat().setVisible(true);
             }
         });
     }
