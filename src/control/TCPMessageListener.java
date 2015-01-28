@@ -15,19 +15,19 @@ import view.TCP_UDP_Chat;
 
 public class TCPMessageListener implements Runnable {
 
-    private int sourcePort;
+    
     private int destinationPort;
     private InetAddress ip;
     private String host;
     private Socket socket;
     private BufferedReader br;
 
-    public TCPMessageListener(String ipStr, int sourcePort, int destinationPort) throws Exception {
-        if (ipStr == null || ipStr.equals("") || sourcePort < 0 || destinationPort < 0) {
+    public TCPMessageListener(String ipStr, int destinationPort) throws Exception {
+        if (ipStr == null || ipStr.equals("") || destinationPort < 0) {
             throw new Exception("You have to input a correct host");
         }
 
-        this.sourcePort = sourcePort;
+        
         this.host = ipStr;
         this.destinationPort = destinationPort;
     }

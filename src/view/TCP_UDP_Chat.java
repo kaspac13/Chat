@@ -196,7 +196,7 @@ public class TCP_UDP_Chat extends javax.swing.JFrame {
 
             if (cbWhichProtocol.getSelectedItem().toString().equals("TCP")) {
                 System.out.println("Combobox equals TCP");
-                tcpListener = new TCPMessageListener(host, source, dest);
+                tcpListener = new TCPMessageListener(host, dest);
                 tcpListener.connect();
                 tcpThread = new Thread(tcpThread);
                 tcpThread.start();
